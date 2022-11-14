@@ -1,0 +1,49 @@
+org: giribabu
+app: task
+service: task
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+#   iamRoleStatements:
+#     iamRoleStatements:
+#       - Effect: Allow
+#         Action:
+#           - dynamodb:DescribeTable
+#           - dynamodb:Query
+#           - dynamodb:Scan
+#           - dynamodb:GetItem
+#           - dynamodb:PutItem
+#           - dynamodb:UpdateItem
+#           - dynamodb:DeleteItem
+#         Resource:
+#           - { "Fn::GetAtt": ["UserTable", "Arn"] }
+#   environment:
+#     USER_TABLE: ${self:custom.tableName}
+functions:
+  # hello:
+  #   handler: handler.hello
+  #   events:
+  #     - httpApi:
+  #         path: /
+  #         method: get
+  handler1:
+    handler: index.handler1
+    events:
+      - httpApi: "*"
+# resources: # CloudFormation template syntax from here on.
+#   Resources:
+#     usersTable:
+#       Type: AWS::DynamoDB::Table
+#       Properties:
+#         TableName: userTable
+#         AttributeDefinitions:
+#           - AttributeName: mail
+#             AttributeType: S
+#         KeySchema:
+#           - AttributeName: mail
+#             KeyType: HASH
+#         ProvisionedThroughput:
+#           ReadCapacityUnits: 1
+#           WriteCapacityUnits: 1
